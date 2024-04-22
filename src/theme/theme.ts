@@ -1,6 +1,5 @@
 /** @format */
 
-import { extendBaseTheme, theme as chakraTheme } from "@chakra-ui/react";
-const { Button } = chakraTheme.components;
+import { extendBaseTheme } from "@chakra-ui/react";
 
 export const theme = extendBaseTheme({});

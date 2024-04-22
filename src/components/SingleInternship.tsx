@@ -1,8 +1,6 @@
 /** @format */
 
 import { Link } from "react-router-dom";
-import { Enterprise } from "../interfaces/Enterprises";
-import { BACKEND_API_URL2 } from "../utils/env";
 import { Internship } from "../interfaces/Internship";
 import { Badge } from "@chakra-ui/react";
 

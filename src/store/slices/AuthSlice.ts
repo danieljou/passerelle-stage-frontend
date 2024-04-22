@@ -3,8 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { UserInformations } from "../../utils/interfaces/loginInterfaces";
-
+import { UserInformations } from "../../interfaces/loginInterfaces";
 export interface initialState {
 	user_infos: UserInformations | null;
 	isLoading: boolean | null;

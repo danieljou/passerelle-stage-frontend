@@ -1,7 +1,5 @@
 /** @format */
 
-import React from "react";
-
 const ProductCard = () => {
 	return (
 		<div className="antialiased text-gray-900 ">

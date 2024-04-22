@@ -1,8 +1,4 @@
 /** @format */
-
-import Footer from "../components/Footer";
-import Navbar from "../components/Header";
-import OwnCarroussel from "../components/OwnCarroussel";
 import { messages } from "../interfaces/StageMessagesInterface";
 
 export default function Landing() {
