@@ -9,7 +9,7 @@ import {
 	SkeletonCircle,
 	SkeletonText,
 } from "@chakra-ui/react";
-import { BACKEND_API_URL2 } from "../utils/env";
+
 import SingleInternship from "../components/SingleInternship";
 
 const EnterpriseDetails = () => {
@@ -52,7 +52,7 @@ const EnterpriseDetails = () => {
 							{/* <div className="h-48 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1570797197190-8e003a00c846?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=968&q=80')"></div> */}
 							<img
 								className="h-48 w-full object-contain object-end"
-								src={`${BACKEND_API_URL2}${data.enterprise.logo}`}
+								src={`${data.enterprise.logo}`}
 								alt={data.enterprise.name}
 							/>
 							<div className="">
