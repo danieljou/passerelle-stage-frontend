@@ -120,7 +120,7 @@ const Postuler = () => {
 											onChange={(e) => {
 												settd({
 													...td,
-													cv: e?.target?.files[0] ? e.target.files[0] : null,
+													cv: e.target.files ? e.target.files[0] : null,
 												});
 											}}
 											type="file"
@@ -166,7 +166,7 @@ const Postuler = () => {
 											onChange={(e) => {
 												settd({
 													...td,
-													cs: e.target.files[0] ? e.target.files[0] : null,
+													cs: e.target.files ? e.target.files[0] : null,
 												});
 											}}
 											type="file"
@@ -215,7 +215,7 @@ const Postuler = () => {
 											onChange={(e) => {
 												settd({
 													...td,
-													ds: e.target.files[0] ? e.target.files[0] : null,
+													ds: e.target.files ? e.target.files[0] : null,
 												});
 											}}
 											type="file"
@@ -264,7 +264,7 @@ const Postuler = () => {
 											onChange={(e) => {
 												settd({
 													...td,
-													lm: e.target.files[0] ? e.target.files[0] : null,
+													lm: e.target.files ? e.target.files[0] : null,
 												});
 											}}
 											type="file"
