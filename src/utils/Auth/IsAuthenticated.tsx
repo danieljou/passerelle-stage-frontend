@@ -13,7 +13,7 @@ const IsAuthenticated: React.FC<Props> = ({ children }) => {
 	const user = localStorage.getItem("WD_USER");
 	// console.log("user", user);
 
-	return <div>{user ? children : <Navigate to={"/"} />}</div>;
+	return <div>{user ? children : <Navigate to={"/login"} />}</div>;
 };
 
 export default IsAuthenticated;

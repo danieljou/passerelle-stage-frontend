@@ -8,6 +8,7 @@ import {
 	SkeletonCircle,
 	SkeletonText,
 } from "@chakra-ui/react";
+
 import {
 	useGetInternshipsQuery,
 	// useGetSearchParametersQuery,
@@ -148,7 +149,39 @@ const Search = () => {
 									<p className="text-justify">
 										{filteredData[selected].modalities}
 									</p>
-									<p className="font-bold mt-4">Localisation</p>
+									<p>
+										{filteredData[selected].cv && (
+											<div className="my-2">
+												<i className="fa fa-check-circle"></i> CORRICULIUM VITAE
+											</div>
+										)}
+									</p>
+									<p>
+										{filteredData[selected].certificat_scolarite && (
+											<div className="my-2">
+												<i className="fa fa-check-circle"></i> CERTIFICAT DE
+												SCOLARITE
+											</div>
+										)}
+									</p>
+									<p>
+										{filteredData[selected].demande_de_stage && (
+											<div className="my-2">
+												<i className="fa fa-check-circle"></i> DEMANDE DE STAGE
+											</div>
+										)}
+									</p>
+									<p>
+										{filteredData[selected].lettre_motivation && (
+											<div className="my-2">
+												<i className="fa fa-check-circle"></i> LETTRE DE
+												MOTIVATION
+											</div>
+										)}
+									</p>
+									<p className="font-bold mt-4">
+										<i className="fa fa-location"></i> Localisation
+									</p>
 									<div className="flex justify-between mb-4 font-bold text-gray-600">
 										<span>{filteredData[selected].enterprise.town}</span>
 										<span>
@@ -171,7 +204,7 @@ const Search = () => {
 										</div>
 									</div>
 
-									<Link to={""}>
+									<Link to={`/postuler/${filteredData[selected].id}`}>
 										{" "}
 										<div className="w-full my-4 text-center bg-blue-500 py-2 font-bold text-lg text-white rounded-full">
 											Postler

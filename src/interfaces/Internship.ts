@@ -14,5 +14,18 @@ export interface Internship {
 	end_date: string;
 	place: string;
 	type: string;
+	cv: boolean;
+	lettre_motivation: boolean;
+	certificat_scolarite: boolean;
+	demande_de_stage: boolean;
 }
 export interface InternshipForm extends Omit<Internship, "id"> {}
+
+export interface demandeDoc {
+	title: string;
+	file: File | null;
+}
+export interface InternshipCreate {
+	demand: { intermship: string; owner: string };
+	docs: demandeDoc[];
+}

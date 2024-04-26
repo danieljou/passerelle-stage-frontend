@@ -11,6 +11,8 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import { useEffect } from "react";
 import Profile from "./pages/Profile";
+import IsAuthenticated from "./utils/Auth/IsAuthenticated";
+import Postuler from "./pages/Postuler";
 const AppRouter = () => {
 	const { pathname } = useLocation();
 
@@ -27,6 +29,14 @@ const AppRouter = () => {
 				<Route path="enterprises" Component={Enterprises} />
 				<Route path="enterprises/:id" Component={EnterpriseDetails} />
 				<Route path="profile" Component={Profile} />
+				<Route
+					path="postuler/:id"
+					element={
+						<IsAuthenticated>
+							<Postuler />
+						</IsAuthenticated>
+					}
+				/>
 			</Route>
 		</Routes>
 	);
