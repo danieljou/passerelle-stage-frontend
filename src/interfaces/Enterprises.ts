@@ -9,5 +9,7 @@ export interface Enterprise {
 	description: string;
 	logo: string;
 	place_coordinates: string;
+	town: string;
+	localisation: string;
 }
 export interface EnterpriseForm extends Omit<Enterprise, "id"> {}

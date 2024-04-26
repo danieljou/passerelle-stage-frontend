@@ -4,10 +4,21 @@ import { Link } from "react-router-dom";
 import { Internship } from "../interfaces/Internship";
 import { Badge } from "@chakra-ui/react";
 
-const SingleInternship = ({ data }: { data: Internship }) => {
+const SingleInternship = ({
+	data,
+	desable,
+}: {
+	data: Internship;
+	desable: boolean;
+}) => {
 	return (
-		<div className="overflow-hidden shadow-lg border-slate-700 border-2">
-			<Link to={`/internship/${data.id}`} className="bg-red-500  ">
+		<div className="overflow-hidden shadow-lg rounded-md h-full">
+			<Link
+				onClick={(e) => {
+					if (desable) e.preventDefault();
+				}}
+				to={`/internship/${data.id}`}
+				className="bg-red-500  ">
 				<div className="p-6">
 					<div className="mt-1">
 						<div className="text-gray-600 text-sm">Type</div>

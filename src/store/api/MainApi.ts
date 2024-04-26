@@ -5,6 +5,8 @@ import { BACKEND_API_URL } from "../../utils/env";
 import { initialState } from "../slices/AuthSlice";
 import { EnterpriseArray } from "../../interfaces/Enterprises";
 import { InterpriseDetails } from "../../interfaces/InterpriseDetails";
+import { SearchParameters } from "../../interfaces/SearchParameters";
+import { InternshipArray } from "../../interfaces/Internship";
 
 export const MainApi = createApi({
 	reducerPath: "MainApi",
@@ -30,7 +32,18 @@ export const MainApi = createApi({
 		getSingleEnterprise: builder.query<InterpriseDetails, string>({
 			query: (id: string) => `enterprises/${id}/`,
 		}),
+		getInternships: builder.query<InternshipArray, void>({
+			query: () => `internships/`,
+		}),
+		getSearchParameters: builder.query<SearchParameters, void>({
+			query: () => `search_parameters/`,
+		}),
 	}),
 });
 
-export const { useGetEnterprisesQuery, useGetSingleEnterpriseQuery } = MainApi;
+export const {
+	useGetEnterprisesQuery,
+	useGetSingleEnterpriseQuery,
+	useGetSearchParametersQuery,
+	useGetInternshipsQuery,
+} = MainApi;

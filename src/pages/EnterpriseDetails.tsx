@@ -77,7 +77,7 @@ const EnterpriseDetails = () => {
 					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
 						{data.internships.map((internship, index) => (
 							<div key={index}>
-								<SingleInternship data={internship} />
+								<SingleInternship desable data={internship} />
 							</div>
 						))}
 					</div>

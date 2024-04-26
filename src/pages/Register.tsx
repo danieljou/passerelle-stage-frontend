@@ -37,7 +37,7 @@ const Register: React.FC = () => {
 			if ("error" in res) {
 				const errors = res.error;
 				if ("data" in errors) {
-					const data = errors.data as Object;
+					const data = errors.data as object;
 					if ("username" in data)
 						toast.error("Un utilisateur possède déjà ce nom d'utilisateur");
 					setCustumErrors({
@@ -86,20 +86,14 @@ const Register: React.FC = () => {
 
 	return (
 		<div className="relative h-screen">
-			<main className="w-full flex">
+			<main className="w-full flex h-full">
 				<div className="relative flex-1 hidden items-center justify-center h-screen bg-indigo-600 lg:flex">
-					<Link
-						to="/"
-						className="absolute z-10 -right-5 top-[50%] bg-gradient-to-tr from-sky-500 to-indigo-500 p-2 rounded-full shadow-lg"></Link>
 					<div className="relative z-10 w-full max-w-md">
 						<div className=" mt-16 space-y-3">
 							<h3 className="text-white text-3xl font-bold">
 								Commencez dès maintenant
 							</h3>
-							<p className="text-gray-300">
-								Créez votre compte ou celui de votre institution afin de
-								continuer
-							</p>
+
 							<div className="flex items-center -space-x-2 overflow-hidden">
 								{/* Add your images here */}
 								<p className="text-sm text-gray-400 font-medium translate-x-5">

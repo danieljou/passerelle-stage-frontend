@@ -42,7 +42,7 @@ export default function Navbar(props: any) {
 				<div
 					className={
 						"lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none" +
-						(navbarOpen ? " block rounded shadow-lg" : " hidden")
+						(navbarOpen ? " block rounded " : " hidden")
 					}
 					id="example-navbar-warning">
 					<ul className="flex flex-col lg:flex-row list-none mr-auto">
@@ -110,7 +110,7 @@ export default function Navbar(props: any) {
 						)}
 						{isLogin && (
 							<li className="flex items-center">
-								<Link to="">
+								<Link to="profile">
 									<button
 										className={
 											(props.transparent

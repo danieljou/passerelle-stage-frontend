@@ -15,21 +15,21 @@ import toast from "react-hot-toast";
 
 export default function Login() {
 	const isLogin = useAppSelector((state) => state.AuthSlice.isLogin);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (isLogin === true) {
 			navigate("/");
 		}
-	}, [isLogin]);
+	}, [isLogin, navigate]);
 
 	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
 	// const searchParams = new URLSearchParams(location.search);
 	// const next = searchParams.get("next") || "";
 
 	const [passswordHide, setPasswordHide] = useState<boolean>(true);
 
-	const [Login, { isSuccess, isLoading }] = useLoginUserMutation();
+	const [Login, { isLoading }] = useLoginUserMutation();
 
 	const validationSchema = yup.object().shape({
 		username: yup.string().required("Le nom d'utilisateur est requis"),
@@ -80,9 +80,6 @@ export default function Login() {
 			}
 
 			return; // Retour anticipé en cas d'erreur
-		}
-
-		if (isSuccess) {
 		}
 	};
 
@@ -249,18 +246,12 @@ export default function Login() {
 								</div>
 								<div className="flex flex-wrap mt-6">
 									<div className="w-1/2">
-										<Link
-											to=""
-											onClick={(e) => e.preventDefault()}
-											className="text-black">
+										<Link to="" className="text-black">
 											<small>Forgot password?</small>
 										</Link>
 									</div>
 									<div className="w-1/2 text-right">
-										<Link
-											to="/register"
-											onClick={(e) => e.preventDefault()}
-											className="text-black">
+										<Link to="/register" className="text-black">
 											<small>Créer un compte</small>
 										</Link>
 									</div>

@@ -25,12 +25,12 @@ export interface User {
 	is_active: boolean;
 	date_joined: string;
 	last_name: string;
-	first_name: any;
+	first_name: unknown;
 	email: string;
-	picture: any;
+	picture: unknown;
 	is_parrain: boolean;
-	school_level: any;
-	enterprise: any;
-	groups: any[];
-	user_permissions: any[];
+	school_level: unknown;
+	enterprise: unknown;
+	groups: unknown[];
+	user_permissions: unknown[];
 }

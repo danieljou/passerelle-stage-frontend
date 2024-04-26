@@ -6,14 +6,14 @@ export interface MenuLink {
 }
 
 export const Menu: MenuLink[] = [
-	{
-		path: "/stages",
-		text: "Stages",
-	},
-	{
-		path: "/enterprises",
-		text: "Entreprises",
-	},
+	// {
+	// 	path: "/stages",
+	// 	text: "Stages",
+	// },
+	// {
+	// 	path: "/enterprises",
+	// 	text: "Entreprises",
+	// },
 	// {
 	// 	path: "/stages",
 	// 	text: "Stages",

@@ -1,4 +1,5 @@
 /** @format */
+import Search from "../components/Search";
 import { messages } from "../interfaces/StageMessagesInterface";
 
 export default function Landing() {
@@ -258,7 +259,9 @@ export default function Landing() {
 					</div>
 				</section>
 
-				<section className="pt-20 pb-48">
+				<Search />
+
+				{/* <section className="pt-20 pb-48">
 					<div className="container mx-auto px-4">
 						<div className="flex flex-wrap justify-center text-center mb-24">
 							<div className="w-full lg:w-6/12 px-4">
@@ -545,7 +548,7 @@ export default function Landing() {
 							</div>
 						</div>
 					</div>
-				</section>
+				</section> */}
 			</main>
 		</>
 	);
