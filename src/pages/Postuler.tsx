@@ -55,6 +55,8 @@ const Postuler = () => {
 		},
 	});
 	const handleSubmit = async () => {
+		const formData = new FormData();
+
 		const data: InternshipCreate = {
 			demand: {
 				intermship: id as string,
@@ -81,8 +83,9 @@ const Postuler = () => {
 			],
 		};
 		console.log(data);
-
-		const res = await postulate(data);
+		formData.append("demand", JSON.stringify(data.demand));
+		formData.append("doc", JSON.stringify(data.docs));
+		const res = await postulate(formData);
 		if ("error" in res) {
 			console.log(res.error);
 			toast.error("Error");

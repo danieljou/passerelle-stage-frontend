@@ -6,11 +6,7 @@ import { initialState } from "../slices/AuthSlice";
 import { EnterpriseArray } from "../../interfaces/Enterprises";
 import { InterpriseDetails } from "../../interfaces/InterpriseDetails";
 import { SearchParameters } from "../../interfaces/SearchParameters";
-import {
-	Internship,
-	InternshipArray,
-	InternshipCreate,
-} from "../../interfaces/Internship";
+import { Internship, InternshipArray } from "../../interfaces/Internship";
 
 export const MainApi = createApi({
 	reducerPath: "MainApi",
@@ -45,16 +41,15 @@ export const MainApi = createApi({
 		getSingleInternship: builder.query<Internship, string>({
 			query: (id: string) => `internships/${id}/`,
 		}),
-		createInternship: builder.mutation<unknown, InternshipCreate>({
-			query: ({ demand, docs }) => {
+		createInternship: builder.mutation<unknown, FormData>({
+			query: (data: FormData) => {
 				return {
 					url: `internship/user-demands/`,
 					headers: {
 						"content-type": "multipart/form-data",
-						Accept: "application/json, text/plain, */*",
 					},
 					method: "POST",
-					body: { demand, docs },
+					body: data,
 				};
 			},
 		}),

@@ -1,7 +1,6 @@
 /** @format */
 
 import {
-	Badge,
 	Box,
 	IconButton,
 	Input,
@@ -17,7 +16,7 @@ import { useEffect, useState } from "react";
 
 import { InternshipArray } from "../interfaces/Internship";
 import SingleInternship from "./SingleInternship";
-import { Link } from "react-router-dom";
+import StageDetails from "./StageDetails";
 
 const Search = () => {
 	// const {} = useGetSearchParametersQuery();
@@ -78,7 +77,7 @@ const Search = () => {
 			</div>
 
 			<div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-				<div className="lg:col-span-2 col-span-1 h-screen overflow-y-auto">
+				<div className="col-span-2 lg:col-span-1  h-screen overflow-y-auto">
 					{internshipsLoading && (
 						<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 p-4 gap-4">
 							{Array.from({ length: 4 }).map(() => (
@@ -97,7 +96,7 @@ const Search = () => {
 						</div>
 					)}
 					{internshipsSuccess && (
-						<div className="grid grid-cols-1 lg:grid-cols-2  gap-4 my-4">
+						<div className="grid grid-cols-1  gap-4 my-4">
 							{filteredData.map((internship, index) => (
 								<div
 									onClick={() => setSelected(index)}
@@ -109,7 +108,7 @@ const Search = () => {
 						</div>
 					)}
 				</div>
-				<div className="col-span-1">
+				<div className="hidden lg:block col-span-2">
 					{internshipsLoading && (
 						<div className="w-full h-72">
 							<Box padding="6">
@@ -127,90 +126,7 @@ const Search = () => {
 					{internshipsSuccess && selected != null && (
 						<div className=" my-4 p-4 bg-white shadow-xl rounded-lg">
 							{filteredData[selected] && (
-								<div className="w-full">
-									<p className="font-bold text-xl">
-										{filteredData[selected].enterprise.name}
-									</p>
-									<img
-										alt="logo"
-										src={filteredData[selected].enterprise.logo}
-									/>
-									<p className="font-semibold my-4">
-										Stage {filteredData[selected].type}
-									</p>
-									<p className="text-gray-500 text-justify w-full ">
-										{filteredData[selected].enterprise.description}
-									</p>
-									<div className="flex justify-between my-4 font-bold text-gray-600">
-										<span>{filteredData[selected].start_date}</span>
-										<span>{filteredData[selected].end_date}</span>
-									</div>
-									<p className="font-bold">Modalités</p>
-									<p className="text-justify">
-										{filteredData[selected].modalities}
-									</p>
-									<p>
-										{filteredData[selected].cv && (
-											<div className="my-2">
-												<i className="fa fa-check-circle"></i> CORRICULIUM VITAE
-											</div>
-										)}
-									</p>
-									<p>
-										{filteredData[selected].certificat_scolarite && (
-											<div className="my-2">
-												<i className="fa fa-check-circle"></i> CERTIFICAT DE
-												SCOLARITE
-											</div>
-										)}
-									</p>
-									<p>
-										{filteredData[selected].demande_de_stage && (
-											<div className="my-2">
-												<i className="fa fa-check-circle"></i> DEMANDE DE STAGE
-											</div>
-										)}
-									</p>
-									<p>
-										{filteredData[selected].lettre_motivation && (
-											<div className="my-2">
-												<i className="fa fa-check-circle"></i> LETTRE DE
-												MOTIVATION
-											</div>
-										)}
-									</p>
-									<p className="font-bold mt-4">
-										<i className="fa fa-location"></i> Localisation
-									</p>
-									<div className="flex justify-between mb-4 font-bold text-gray-600">
-										<span>{filteredData[selected].enterprise.town}</span>
-										<span>
-											{filteredData[selected].enterprise.localisation}
-										</span>
-									</div>
-									<div className="mt-1">
-										<div className="font-bold">
-											{filteredData[selected].price === 0 ? (
-												<Badge color={"red"}>
-													<div className="text-2xl">Gratuit</div>
-												</Badge>
-											) : (
-												<Badge color={"red"}>
-													<div className="text-2xl">
-														{filteredData[selected].price} XFA
-													</div>
-												</Badge>
-											)}
-										</div>
-									</div>
-
-									<Link to={`/postuler/${filteredData[selected].id}`}>
-										{" "}
-										<div className="w-full my-4 text-center bg-blue-500 py-2 font-bold text-lg text-white rounded-full">
-											Postler
-										</div>
-									</Link>
-								</div>
+								<StageDetails stage={filteredData[selected]} />
 							)}
 						</div>
 					)}
