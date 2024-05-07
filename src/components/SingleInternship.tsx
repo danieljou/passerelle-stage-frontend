@@ -68,10 +68,7 @@ const SingleInternship = ({
 					leastDestructiveRef={cancelRef}
 					onClose={onClose}>
 					<AlertDialogOverlay>
-						<AlertDialogContent
-							padding={41}
-							className="w-full"
-							w={"max-content"}>
+						<AlertDialogContent padding={41} className="w-[800px]">
 							<StageDetails stage={data} />
 
 							<AlertDialogFooter>

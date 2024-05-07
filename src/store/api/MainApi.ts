@@ -41,8 +41,8 @@ export const MainApi = createApi({
 		getSingleInternship: builder.query<Internship, string>({
 			query: (id: string) => `internships/${id}/`,
 		}),
-		createInternship: builder.mutation<unknown, FormData>({
-			query: (data: FormData) => {
+		createInternship: builder.mutation<unknown, unknown>({
+			query: (data: unknown) => {
 				return {
 					url: `internship/user-demands/`,
 					headers: {

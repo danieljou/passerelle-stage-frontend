@@ -1,33 +1,25 @@
 /** @format */
 
-import { useParams } from "react-router-dom";
-import {
-	useCreateInternshipMutation,
-	useGetSingleInternshipQuery,
-} from "../store/api/MainApi";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetSingleInternshipQuery } from "../store/api/MainApi";
 import { Box, Button, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
-import * as yup from "yup";
+
 import { useFormik } from "formik";
-import { InternshipCreate } from "../interfaces/Internship";
 import { useAppSelector } from "../store/hooks";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import axios from "axios";
+import { BACKEND_API_URL } from "../utils/env";
 const Postuler = () => {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const { data, isLoading, isSuccess } = useGetSingleInternshipQuery(
 		id as string
 	);
-	const [postulate, { isLoading: its }] = useCreateInternshipMutation();
 
-	const validationSchema = yup.object().shape({
-		// username: yup.string().required("Le nom d'utilisateur est requis"),
-		// password: yup.string().required("Le mot de passe est requis"),
-		// cv: yup.mixed().test("fileType", "Selectionnez un fichier pdf", (value) => {
-		// 	return value && "type" in value && value.type === "application/pdf";
-		// }),
-	});
+	const [IsUploadLoading, setIsUploadLoading] = useState<boolean>(false);
 
-	const [td, settd] = useState<{
+	const [dataForm, setDataForm] = useState<{
 		cv: null | File;
 		lm: null | File;
 		cs: null | File;
@@ -49,50 +41,38 @@ const Postuler = () => {
 			ds: "",
 			cs: "",
 		},
-		validationSchema: validationSchema,
+
 		onSubmit: () => {
-			handleSubmit();
+			// handleSubmit();
 		},
 	});
-	const handleSubmit = async () => {
+	const handleSubmit = async (e: FormEvent) => {
+		e.preventDefault();
+		setIsUploadLoading(true);
 		const formData = new FormData();
-
-		const data: InternshipCreate = {
-			demand: {
-				intermship: id as string,
-				owner: userID as unknown as string,
-			},
-
-			docs: [
-				{
-					file: td.cs,
-					title: "CERTIFICAT DE SCOLARITE",
+		formData.append("cv", dataForm.cv as File);
+		formData.append("cs", dataForm.cs as File);
+		formData.append("ds", dataForm.ds as File);
+		formData.append("lm", dataForm.lm as File);
+		formData.append("intermship", id as string);
+		formData.append("owner", userID as unknown as string);
+		axios
+			.post(`${BACKEND_API_URL}create_demand/`, formData, {
+				headers: {
+					"Content-Type": "multipart/form-data",
 				},
-				{
-					file: td.lm,
-					title: "LETTRE DE MOTIVATION",
-				},
-				{
-					file: td.ds,
-					title: "DEMANDE DE STAGE",
-				},
-				{
-					file: td.cv,
-					title: "CV",
-				},
-			],
-		};
-		console.log(data);
-		formData.append("demand", JSON.stringify(data.demand));
-		formData.append("doc", JSON.stringify(data.docs));
-		const res = await postulate(formData);
-		if ("error" in res) {
-			console.log(res.error);
-			toast.error("Error");
-		}
-		if ("data" in res) {
-			toast.success("Suceess");
-		}
+			})
+			.then(() => {
+				toast.success("Demande crée avec succès");
+				navigate("/");
+			})
+			.catch((e) => {
+				console.log("ERRRRO ", e);
+				toast.error("Une erreur est survenue");
+			})
+			.finally(() => {
+				setIsUploadLoading(false);
+			});
 	};
 	return (
 		<div>
@@ -110,7 +90,7 @@ const Postuler = () => {
 					<p>
 						{data.enterprise.name} - stage {data.type}
 					</p>
-					<form action="">
+					<form onSubmit={handleSubmit}>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 							{data.cv && (
 								<div className="mb-4">
@@ -121,8 +101,8 @@ const Postuler = () => {
 										<input
 											// {...formik.getFieldProps("cv")}
 											onChange={(e) => {
-												settd({
-													...td,
+												setDataForm({
+													...dataForm,
 													cv: e.target.files ? e.target.files[0] : null,
 												});
 											}}
@@ -167,8 +147,8 @@ const Postuler = () => {
 										<input
 											// {...formik.getFieldProps("sc")}
 											onChange={(e) => {
-												settd({
-													...td,
+												setDataForm({
+													...dataForm,
 													cs: e.target.files ? e.target.files[0] : null,
 												});
 											}}
@@ -216,8 +196,8 @@ const Postuler = () => {
 										<input
 											// {...formik.getFieldProps("ds")}
 											onChange={(e) => {
-												settd({
-													...td,
+												setDataForm({
+													...dataForm,
 													ds: e.target.files ? e.target.files[0] : null,
 												});
 											}}
@@ -265,8 +245,8 @@ const Postuler = () => {
 										<input
 											// {...formik.getFieldProps("lm")}
 											onChange={(e) => {
-												settd({
-													...td,
+												setDataForm({
+													...dataForm,
 													lm: e.target.files ? e.target.files[0] : null,
 												});
 											}}
@@ -309,8 +289,8 @@ const Postuler = () => {
 
 						<div className="text-center mt-6">
 							<Button
-								onClick={() => formik.handleSubmit()}
-								isLoading={its}
+								type="submit"
+								isLoading={IsUploadLoading}
 								className=" w-full bg-sky-500 "
 								color={"white"}
 								colorScheme={"blue"}

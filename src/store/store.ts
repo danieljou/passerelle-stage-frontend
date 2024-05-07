@@ -6,6 +6,7 @@ import ThemeSlice from "./slices/ThemeSlice";
 import AuthSlice from "./slices/AuthSlice";
 import { AuthenticationApi } from "./api/AuthenticationApi";
 import { MainApi } from "./api/MainApi";
+import { UploadApi } from "./api/UploadApi";
 // import { ArticleApi } from "./api/ArticleApi";
 
 export const store = configureStore({
@@ -14,13 +15,15 @@ export const store = configureStore({
 		AuthSlice,
 		[AuthenticationApi.reducerPath]: AuthenticationApi.reducer,
 		[MainApi.reducerPath]: MainApi.reducer,
+		[UploadApi.reducerPath]: UploadApi.reducer,
 		// [ArticleApi.reducerPath]: ArticleApi.reducer,
 	},
 
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(
 			AuthenticationApi.middleware,
-			MainApi.middleware
+			MainApi.middleware,
+			UploadApi.middleware
 			// ArticleApi.middleware
 		),
 });

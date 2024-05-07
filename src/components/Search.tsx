@@ -54,7 +54,7 @@ const Search = () => {
 		if (internships != null && internships.length > 0) setSelected(0);
 	}, [internships]);
 	return (
-		<div className="p-8">
+		<div className="p-48">
 			<p className="font-bold text-xl my-4">Recherchez une stage</p>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-4">
 				<Input
